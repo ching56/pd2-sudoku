@@ -14,7 +14,8 @@ class Sudoku{
 			int judge = 0;
 			int ps = nextBlank(-1);
 			int i;
-			do{
+			int counter=0;
+			do{	cout<<counter<<endl;counter++;
 				map[ps]++;
 				if(map[ps] > 9){
 					map[ps] = 0;

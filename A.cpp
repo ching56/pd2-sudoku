@@ -1,13 +1,15 @@
 #include<iostream>
-
+//test for system clear
+#include<stdlib.h>
+#include<stdio.h>
 using namespace std;
 
 class Sudoku{
 
 	public:
 		
-		Sudoku(){for(int i=0;i<sudokuSize;++i)map[i]=0;temp_count=0;};
-		Sudoku(const int init_map[]){for(int i=0;i<sudokuSize;++i)map[i]=init_map[i];temp_count=0;};
+		Sudoku(){for(int i=0;i<sudokuSize;++i){map[i]=0;temp_ps[i]=0;}temp_count=0;};
+		Sudoku(const int init_map[]){for(int i=0;i<sudokuSize;++i){map[i]=init_map[i];temp_ps[i]=0;}temp_count=0;};
 		
 		void ReadIn(){for(int i=0;i<sudokuSize;++i)cin >> map[i];};
 		void Solve(){
@@ -15,7 +17,8 @@ class Sudoku{
 			int ps = nextBlank(-1);
 			int i;
 			int counter=0;
-			do{	cout<<counter<<endl;counter++;
+			do{	//test
+				cout<<counter<<endl;counter++;
 				map[ps]++;
 				if(map[ps] > 9){
 					map[ps] = 0;
@@ -30,11 +33,18 @@ class Sudoku{
 						}
 					}
 				}
+			//test begin
+			sleep(1);
+			system("clear");
+			for(i = 0;i < sudokuSize;++i){
+				cout << map[i]<<' ';
+				if((i+1) % 12 == 0)cout << endl;}
+			//test end
 			}while(ps >=  0 && ps < sudokuSize && judge < 2);
 			cout << judge << endl;
 			for(i = 0;i < sudokuSize;++i){
-				cout << map[i];
-				if(i % 12 == 0)cout << endl;
+				cout << map[i]<<' ';
+				if((i+1) % 12 == 0)cout << endl;
 			}
 		};
 		void GiveQuestion();
@@ -48,7 +58,7 @@ class Sudoku{
 		
 		void recordBlank(int ps){temp_ps[temp_count++]=ps;};
 		int nextBlank(int ps){
-			do{ps++;}while( ps < sudokuSize && map[ps] > 0);
+			do{ps++;}while( ps < sudokuSize && map[ps] > 0 || map[ps] == -1);
 			return ps;
 		};
 		int previousBlank(int ps){
@@ -56,7 +66,7 @@ class Sudoku{
 			ps = temp_ps[--temp_count];
 		};
 		int findstart_row(int ps){
-			return (ps - ( ps % 12 ) + 1);
+			return (ps - ( ps % 12 ));
 		};
 		int findstart_col(int ps){
 			return ( ps % 12 );
@@ -86,17 +96,17 @@ class Sudoku{
 			start = findstart_row(ps);
 			for(i=0;i<12;i++)
 				check_arr[i] = map[start + i];
-			if(checkUnity(check_arr) == false)return false;
+			if(checkUnity(check_arr) == false){/*test*/cout<<"rows false"<<endl;/*test end*/return false;};
 			//check colums
 			start = findstart_col(ps);
 			for(i=0;i<12;i++)
 				check_arr[i] = map[start+i*12];
-			if(checkUnity(check_arr) == false)return false;
+			if(checkUnity(check_arr) == false){/*test*/cout<<"col false"<<endl;/*test end*/return false;};
 			//check block
 			start = findstart_blo(ps);
 			for(i=0;i<12;i++)
 				check_arr[i] = map[start+i/3*12+i%3];
-			if(checkUnity(check_arr) == false)return false;
+			if(checkUnity(check_arr) == false){/*test*/cout<<"blo false"<<endl;/*test end*/return false;};
 			return true;
 		}
 };

@@ -1,7 +1,7 @@
 #include<iostream>
 //test for system clear
-#include<stdlib.h>
-#include<stdio.h>
+#include<cstdlib>
+#include<cstdio>
 using namespace std;
 
 class Sudoku{
@@ -44,7 +44,61 @@ class Sudoku{
 			//test
 			cout<<"do "<<counter<<" times"<<endl;
 		};
-		void GiveQuestion();
+		void GiveQuestion(){
+			
+			//the model question
+			int model[sudokuSize] = {0, 2, 0, 0, 0, 0, 0, 0, 1, -1, -1, -1,
+						0, 0, 3, 9, 5, 0, 0, 0, 0, -1, -1, -1,
+						0, 0, 0, 0, 0, 4, 0, 0, 0, -1, -1, -1,
+						-1, -1, -1, 0, 0, 0, 0, 8, 7, 0, 0, 6,
+						-1, -1, -1, 0, 8, 0, 0, 0, 0, 0, 2, 0,
+						-1, -1, -1, 4, 0, 6, 0, 0, 0, 0, 0, 0,
+						1, 0, 0, 0, 0, 0, -1, -1, -1, 0, 9, 0,
+						0, 0, 4, 0, 6, 0, -1, -1, -1, 0, 0, 7,
+						0, 0, 5, 0, 1, 7, -1, -1, -1, 0, 8, 0,
+						0, 1, 0, -1, -1, -1, 7, 0, 0, 5, 0, 9,
+						7, 0, 8, -1, -1, -1, 0, 6, 0, 3, 0, 2,
+						0, 6, 0, -1, -1, -1, 3, 1, 0, 0, 0, 0};
+			//randomly
+			int question[sudokuSize];
+			int rand_num,i;
+
+			for(i=0;i<sudokuSize;i++)question[i]=model[i];
+			srand( (unsigned)time(NULL));
+			rand_num=rand();
+			//test
+			cout<<"random ="<<rand_num<<endl;
+
+			//turn 
+			if(rand_num%4==0){
+				for(i=0;i<sudokuSize;i++)
+					question[i]=model[sudokuSize-i-1];
+			cout<<"turn"<<endl;//test
+			}
+			//mirro
+			if(rand_num%5==0){
+				for(i=0;i<sudokuSize;i++)
+					question[i]=model[(i/12)+(i%12)*12];
+				cout<<"mirro"<<endl;//test
+			}
+			//up 2 to down 2
+			if(rand_num%6==0){
+				for(i=0;i<sudokuSize/2;i++)
+					question[i]=model[sudokuSize/2+i];
+				for(i=sudokuSize/2;i<sudokuSize;i++)
+					question[i]=model[i-sudokuSize/2];
+				cout<<"up 2 to down 2"<<endl;
+
+			}
+			//output
+			for(i=0;i<sudokuSize;i++){
+				cout<<question[i]<<" ";
+				if((i+1)%12==0)
+					cout<<endl;}
+			
+			};
+			
+			
 		static const int sudokuSize = 144;
 
 	private:

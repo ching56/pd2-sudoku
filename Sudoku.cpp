@@ -59,8 +59,17 @@
 			int question[sudokuSize];
 			int rand_num,i;
 
-			for(i=0;i<sudokuSize;i++)question[i]=model[i];
 			srand( (unsigned)time(NULL));
+			rand_num=rand()%9;
+			for(int i=0;i<sudokuSize;i++){
+				if(model[i] != 0 && model[i] != -1){
+					model[i]=(model[i]+rand_num)%10;
+						if(model[i]==0)
+							model[i]=rand_num;
+				}
+			}
+			
+			for(i=0;i<sudokuSize;i++)question[i]=model[i];
 			rand_num=rand()%6+1;
 
 			//turn 

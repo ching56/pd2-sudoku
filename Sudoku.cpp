@@ -13,7 +13,7 @@
 			int counter=0;
 			do{	
 				//test
-				counter++;
+				//counter++;
 				map[ps]++;
 				if(map[ps] > 9){
 					map[ps] = 0;
@@ -31,12 +31,14 @@
 				}
 			}while(ps >=  0 && ps < sudokuSize && judge < 2);
 			cout << judge << endl;
-			for(i = 0;i < sudokuSize;++i){
-				cout << ans[i]<<' ';
-				if((i+1) % 12 == 0)cout << endl;
+			if( judge == 1){
+				for(i = 0;i < sudokuSize;++i){
+					cout << ans[i]<<' ';
+					if((i+1) % 12 == 0)cout << endl;
+				}
 			}
 			//test
-			cout<<"do "<<counter<<" times"<<endl;
+			//cout<<"do "<<counter<<" times"<<endl;
 		};
 		void Sudoku::GiveQuestion(){
 			
@@ -60,20 +62,16 @@
 			for(i=0;i<sudokuSize;i++)question[i]=model[i];
 			srand( (unsigned)time(NULL));
 			rand_num=rand()%6+1;
-			//test
-			cout<<"random ="<<rand_num<<endl;
 
 			//turn 
 			if(rand_num==1){
 				for(i=0;i<sudokuSize;i++)
 					question[i]=model[sudokuSize-i-1];
-			cout<<"turn"<<endl;//test
 			}
 			//mirro
 			if(rand_num==2){
 				for(i=0;i<sudokuSize;i++)
 					question[i]=model[(i/12)+(i%12)*12];
-				cout<<"mirro"<<endl;//test
 			}
 			//up 2 to down 2
 			if(rand_num==3){
@@ -81,7 +79,6 @@
 					question[i]=model[sudokuSize/2+i];
 				for(i=sudokuSize/2;i<sudokuSize;i++)
 					question[i]=model[i-sudokuSize/2];
-				cout<<"up 2 to down 2"<<endl;
 
 			}
 			//output

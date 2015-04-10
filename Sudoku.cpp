@@ -14,19 +14,16 @@
 			do{	
 				//test
 				//counter++;
-				map[ps]++;
-				if(map[ps] > 9){
-					map[ps] = 0;
+				map[ps]=FindOneBigger(ps);
+				if(map[ps] == 0){
 					ps = previousBlank(ps);
 				}else{
-					if(check(ps) == true){
-						recordBlank(ps);
-						ps = nextBlank(ps);
-						if(ps == sudokuSize){
-							ps = previousBlank(ps);
-							judge++;
-							for(i=0;i<sudokuSize;i++)ans[i]=map[i];
-						}
+					recordBlank(ps);
+					ps = nextBlank(ps);
+					if(ps == sudokuSize){
+						ps = previousBlank(ps);
+						judge++;
+						for(i=0;i<sudokuSize;i++)ans[i]=map[i];
 					}
 				}
 			}while(ps >=  0 && ps < sudokuSize && judge < 2);
@@ -40,6 +37,57 @@
 			//test
 			//cout<<"do "<<counter<<" times"<<endl;
 		};
+		int Sudoku::FindOneBigger(int ps_t){
+			int check_arr_row[12];
+			int check_arr_col[12];
+			int check_arr_blo[9];
+			int arr_unity[9];
+			int row_start;
+			int col_start;
+			int blo_start;
+			int i;
+			for(i=0;i<12;++i){
+				check_arr_row[i]=0;
+				check_arr_col[i]=0;
+			}
+			for(i=0;i<9;i++){
+				check_arr_blo[i]=0;
+				arr_unity[i]=0;
+			}
+			//input rows
+			row_start = findstart_row(ps_t);
+			for(i=0;i<12;i++)
+				check_arr_row[i] = map[row_start + i];
+			//input colums
+			col_start = findstart_col(ps_t);
+			for(i=0;i<12;i++)
+				check_arr_col[i] = map[col_start+i*12];
+			//input block
+			blo_start = findstart_blo(ps_t);
+			for(i=0;i<9;i++)
+				check_arr_blo[i] = map[blo_start+i/3*12+i%3];
+			for(i=0;i<12;i++){
+				if(check_arr_row[i] != -1 && check_arr_row[i] != 0)
+					++arr_unity[check_arr_row[i]-1];
+				
+				if(check_arr_col[i] != -1 && check_arr_col[i] != 0)
+					++arr_unity[check_arr_col[i]-1];
+			}
+			for(i=0;i<9;i++){
+				if(check_arr_blo[i] != -1 && check_arr_blo[i] != 0)
+					++arr_unity[check_arr_blo[i]-1];
+			}
+				int j=0;
+			for(i=0;i<9;i++){
+				if(arr_unity[i] == 0 && (i+1)>map[ps_t] ){
+						return i+1;
+					}
+
+			}
+			return 0;
+			
+			
+		}
 		void Sudoku::GiveQuestion(){
 			
 			//the model question

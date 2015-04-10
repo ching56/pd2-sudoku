@@ -16,7 +16,7 @@ class Sudoku{
 		static const int sudokuSize = 144;
 
 	private:
-
+		int FindOneBigger(int ps_t);
 		int temp_ps[sudokuSize];
 		int temp_count;
 		int ans[sudokuSize];

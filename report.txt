@@ -1,0 +1,27 @@
+student ID: F74036467
+
+the report of the project 1: Sudoku
+
+************************************************************************
+
+compile: make
+
+
+execute: ./give_question
+	 ./solve
+
+
+how to test the program:
+
+	1.compile: make
+	2.execute give_question: ./give_question>question.txt
+	3.execute solve: ./solve<question.txt
+
+how did I do my Sudoku:
+
+	1.solve:
+
+	2.give question:
+
+
+***********************************************************************

@@ -1,23 +1,27 @@
-student ID: F74036467
+Student ID: F74036467
 
-the report of the project 1: Sudoku
+The Report Of The Project 1: Sudoku
 
 ************************************************************************
 
-compile: make
+Compile: make
 
 
-execute: ./give_question
+Execute: ./give_question
 	 ./solve
 
 
-how to test the program:
+How to test the program:
 
 	1.compile: make
 	2.execute give_question: ./give_question>question.txt
 	3.execute solve: ./solve<question.txt
 
-how did I do my project:
+About "solveVer1", "solveVer2":
+
+	"solveVer1" and "solveVer" are the executable file made by "make".They're the version I made which use different method and ran slower then the "solve", but still work. More details are in the following.
+
+How did I do my project:
 
 	1.solve:
 
@@ -25,13 +29,13 @@ how did I do my project:
 		
 		In version 1, I fill the number into the blank one by one until it's legal, and move to the next and blank do the same thing. If there isn't any legal answer in the blank, then fill zero and return to the previous blank,and try the next answer. If it does not find any other answer and back to the first blank, it means it's a no answer Sudoku.Or when it finds the answer of the last blank, then it return to the previous blank try next possbile, and repeat it.Try if there is another answer.
 
-		version 2) store the all possible answer of the blanks first and try
+		version 2) store the all possible answer of the blanks first and try, run appromxiately (0.8*version1's running time)
 		
-		In version 2, to improve the efficency of version 1, I do the check the possbile answers of all blanks first and store it. Then use the same method as version one, but only try the possible answer instead of every one. But there is some unsolvable logical error causing the infinite loop, so it's failed.
+		In version 2, to improve the efficency of version 1, I check the possbile answers of all blanks first and store it. Then use the same method as version one, but only try the possible answer instead of every one.
 
-		version 3)
+		version 3) try the least legal one, run appromixately (0.4*version1's running time)
 
-		In version 3, to improve the efficency of version 1 and not make the logic too complicated, try to chcek the possible answer when filling the blank instead of store it first. It can avoid the previous error, and run 1/3 time as the version 1. So I summit this version.
+		In version 3, to improve the efficency of version 1 and not make the logic too complicated, try to chcek the possible answer when filling the blank instead of store it first. It can avoid the previous error, and run 1/3 time as the version 1. And it's the submitted version.
 		
 	2.give question:
 

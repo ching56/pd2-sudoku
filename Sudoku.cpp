@@ -38,6 +38,7 @@
 			do{	
 				//find one number wich is bigger than the previous one in the blank and legal in the position, if no, return 0 and go to the following "if"
 				map[ps]=FindOneBigger(ps);
+				if(map[ps]==-2){judge=0;break;}
 				//if there is no Bigger one, then go to previous one, if there isn't a previous one ,then return -1 ,it will cause the program exit the loop 
 				if(map[ps] == 0){
 					ps = previousBlank(ps);
@@ -113,6 +114,7 @@
 			}
 			//return the lacked number bigger then old one
 			for(i=0;i<9;i++){
+				if(arr_unity[i]>3) return -2;
 				if(arr_unity[i] == 0 && (i+1)>map[ps_t] ){
 						return i+1;
 					}
